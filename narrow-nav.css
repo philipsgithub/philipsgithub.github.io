@@ -1,0 +1,37 @@
+/* One section row for the page header and the fixed bar: same type, same spacing, always
+   right-aligned, so every label stays in place when the fixed bar takes over. */
+.nav-short { display: none; }
+
+@media (max-width: 860px) {
+  :root { --narrow-gutter: 20px; --narrow-nav-gap: clamp(8px, 2.6vw, 18px); }
+  .side nav, .compact-bar nav { justify-content: flex-end; gap: var(--narrow-nav-gap); }
+  .side nav { margin: 0 calc(-1 * var(--narrow-gutter)); padding: 0 var(--narrow-gutter); }
+  .compact-bar nav { padding: 0 var(--narrow-gutter); }
+  .side nav a, .compact-bar nav a { font: 500 13px/1.2 var(--sans); }
+  /* The active label keeps its weight, because a wider word would push the others sideways. */
+  .side nav a.active, .compact-bar nav a.active { font-weight: 500; }
+  .compact-id { padding-right: var(--narrow-gutter); padding-left: var(--narrow-gutter); }
+  /* The photo follows the text height, so the role lines must not rewrap with the photo's width. */
+  .role { white-space: nowrap; }
+}
+
+@media (max-width: 619px) {
+  :root { --narrow-gutter: 16px; }
+}
+
+@media (min-width: 720px) and (max-width: 860px) {
+  .compact-bar { padding: 0 var(--narrow-gutter); }
+  .compact-bar nav, .compact-id { padding-right: 0; padding-left: 0; }
+}
+
+/* When the full words no longer fit, shorter ones keep the same right-aligned row. */
+@media (max-width: 429px) {
+  .nav-full { display: none; }
+  .nav-short { display: inline; }
+}
+
+@media (max-width: 319px) {
+  :root { --narrow-nav-gap: 6px; }
+  .side nav a, .compact-bar nav a { font-size: 11.5px; }
+  .role { font-size: 11.5px; }
+}

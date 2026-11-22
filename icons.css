@@ -1,0 +1,9 @@
+/* Contact icons from the CV (Font Awesome 5), in the page accent color. */
+.icon { display: block; flex: none; width: 1em; height: 1em; color: var(--accent); fill: currentColor; }
+.place { display: flex; align-items: center; gap: 6px; }
+.links a { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+
+/* Sidebars are too narrow for three labeled icons in one row, so they stack evenly. */
+@media (min-width: 861px) {
+  .side .links { flex-direction: column; align-items: flex-start; gap: 7px; }
+}

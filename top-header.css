@@ -1,0 +1,78 @@
+/* When the sidebar moves to the top, it becomes one band that lines up with the compact header. */
+@media (max-width: 860px) {
+  .side {
+    position: static;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "identity links" "nav nav";
+    gap: 16px 24px;
+    height: auto;
+    overflow: visible;
+    padding: 22px 20px 0;
+    background: var(--sidebar);
+    border: 0;
+    border-bottom: 1px solid var(--active-line);
+  }
+
+  .identity { grid-area: identity; display: flex; align-items: center; gap: 18px; padding: 0; background: none; }
+  .identity > div { min-width: 0; }
+  .identity img { flex: none; width: 104px; height: 104px; margin: 0; border-radius: 10px; object-fit: cover; object-position: 50% 30%; }
+  .side h1 { font-size: 30px; line-height: 1.1; }
+  .degree { margin-top: 2px; font-size: 13px; }
+  .role { margin-top: 6px; font-size: 14px; line-height: 1.35; }
+  .place { margin-top: 4px; font-size: 13px; }
+
+  .side .links { grid-area: links; flex-direction: column; align-self: center; align-items: flex-start; gap: 5px; margin: 0; padding: 0; background: none; }
+  .links a { padding: 2px 0; }
+
+  .side nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: flex-start;
+    gap: 26px;
+    margin: 0 -20px;
+    padding: 0 20px;
+    overflow: visible;
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--line);
+  }
+  .side nav a {
+    flex: none;
+    min-height: 0;
+    padding: 12px 0 10px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    background: none;
+    color: var(--muted);
+    font: 500 13.5px/1.2 var(--sans);
+    text-align: left;
+  }
+  .side nav a:hover { background: none; color: var(--text); }
+  .side nav a.active { border: 0; border-bottom: 2px solid var(--accent); background: none; color: var(--text); }
+}
+
+@media (max-width: 619px) {
+  .side {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "identity" "links" "nav";
+    gap: 13px;
+    padding: 18px 16px 0;
+  }
+  .identity { gap: 14px; }
+  .identity img { width: 88px; height: 88px; }
+  .side h1 { font-size: 26px; }
+  .role { margin-top: 4px; font-size: 13.5px; }
+  .place { margin-top: 3px; }
+  .side .links { flex-direction: row; align-self: start; gap: 18px; }
+  .side nav { justify-content: space-between; gap: 6px; margin: 0 -16px; padding: 0 16px; }
+  .side nav a { padding: 10px 0 8px; font-size: clamp(11px, 3.3vw, 12.5px); }
+}
+
+@media (max-width: 350px) {
+  .identity { gap: 12px; }
+  .identity img { width: 76px; height: 76px; }
+  .side h1 { font-size: 24px; }
+  .role { font-size: 12.5px; }
+}

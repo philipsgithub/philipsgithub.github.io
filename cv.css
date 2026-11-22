@@ -1,0 +1,11 @@
+/* Compact CV: two open columns and rules, no cards. */
+#cv .cv-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 34px 44px; min-width: 0; max-width: 980px; }
+#cv .cv-group { min-width: 0; }
+#cv .cv-group > h3 { margin-bottom: 12px; color: var(--text); font: 600 23px/1.2 var(--serif); }
+#cv .timeline { max-width: none; grid-template-columns: 92px minmax(0, 1fr); column-gap: 0; }
+#cv .timeline dt, #cv .timeline dd { padding-top: 10px; padding-bottom: 10px; }
+#cv .timeline dt { padding-top: 12px; white-space: nowrap; font-size: 13px; }
+#cv .timeline dd { min-width: 0; font-size: 14.5px; line-height: 1.42; }
+#cv .timeline b { font-size: 15px; line-height: 1.35; }
+#cv .where { display: block; margin-top: 1px; color: var(--muted); font-size: 14px; }
+#cv .kind { color: var(--text); font-weight: 500; }

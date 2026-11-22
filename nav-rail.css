@@ -1,0 +1,59 @@
+/* Desktop navigation: a continuous thin rail, with the current section in the accent color. */
+@media (min-width: 861px) {
+  .side nav { gap: 0; }
+  .side nav a {
+    min-height: 0;
+    padding: 5px 0 5px 12px;
+    border: 0;
+    border-left: 2px solid var(--line);
+    border-radius: 0;
+    background: none;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+  .side nav a:hover { background: none; color: var(--text); }
+  .side nav a.active {
+    border: 0;
+    border-left: 2px solid var(--accent);
+    background: none;
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 861px) and (max-height: 660px) {
+  .side nav a { padding: 3px 0 3px 10px; font-size: 13.5px; }
+}
+
+@media (min-width: 861px) and (max-height: 470px) {
+  .side nav { gap: 0 8px; }
+  .side nav a { padding: 3px 0 3px 8px; font-size: 12px; }
+}
+
+/* Live distribution curve, drawn by density-rail.js. Without JavaScript the plain rail above remains. */
+.density-rail { display: none; }
+
+@media (min-width: 861px) {
+  .side nav { position: relative; }
+  .side nav.has-density a { padding-left: 30px; border-left-color: transparent; }
+  .side nav.has-density a.active { border-left-color: transparent; }
+  .density-rail { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .density-base { fill: var(--line); stroke: none; }
+  /* Overlaps can only gain ink, so a pale, newly growing curve never brightens the one below it. */
+  .density-rail { isolation: isolate; }
+  .density-curve { fill: var(--accent); fill-opacity: 0.55; stroke: none; mix-blend-mode: multiply; }
+}
+
+@media (min-width: 861px) and (prefers-color-scheme: dark) {
+  .density-curve { mix-blend-mode: screen; }
+}
+
+@media (min-width: 861px) and (max-height: 660px) {
+  .side nav.has-density a { padding-left: 26px; }
+}
+
+@media (min-width: 861px) and (max-height: 470px) {
+  .side nav.has-density a { padding-left: 18px; }
+}

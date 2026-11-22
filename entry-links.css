@@ -1,0 +1,25 @@
+/* Links under research and project entries: quiet shapes with the same diagonal corners as the About box. */
+.entry-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 11px 0 0; padding: 0; list-style: none; }
+.entry-links a {
+  display: block;
+  padding: 3px 9px;
+  border-radius: 7px 0;
+  background: rgba(37, 92, 101, .07);
+  color: var(--muted);
+  font: 400 12.5px/1.45 var(--sans);
+  text-decoration: none;
+}
+.entry-links a:hover,
+.paper .entry-links a:hover { background: rgba(37, 92, 101, .14); color: var(--text); text-decoration: none; }
+.entry-links a:focus-visible { border-radius: 7px 0; }
+
+@media (prefers-color-scheme: dark) {
+  .entry-links a { background: rgba(167, 222, 208, .09); }
+  .entry-links a:hover,
+  .paper .entry-links a:hover { background: rgba(167, 222, 208, .17); }
+}
+
+/* In project cards the links sit on a shared bottom line. The description keeps its existing type. */
+.grid article { display: flex; flex-direction: column; }
+.grid article > p:not(.meta) { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+.grid article > .entry-links { margin-top: auto; padding-top: 12px; }

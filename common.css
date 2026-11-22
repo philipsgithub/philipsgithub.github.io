@@ -1,0 +1,142 @@
+/* Static surfaces. Sidebar scrolling is eased in script.js so its speed is controlled. */
+html { scroll-behavior: auto !important; scroll-padding-top: 24px; }
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+body { background: var(--bg); }
+.shell { max-width: 1320px; grid-template-columns: 280px minmax(0, 1fr); }
+.side { padding: 44px 28px 28px; background: var(--sidebar); border-color: var(--line); }
+.identity img { width: 136px; border-radius: 18px; border: 1px solid var(--line); }
+.side h1 { font-size: 32px; }
+.side nav { gap: 5px; }
+.side nav a {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.side nav a:hover { background: var(--panel); color: var(--text); }
+.side nav a.active { background: var(--accent-soft); border-color: var(--active-line); color: var(--accent); }
+.links { gap: 10px 16px; }
+.links a { display: inline-block; padding: 6px 0; }
+main { padding: 44px 44px 32px; }
+section { margin-bottom: 60px; }
+.intro {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--hero-line);
+  border-radius: 26px;
+  background: var(--bg);
+}
+.intro-heading { padding: 36px; background: var(--hero-gradient); }
+.intro-copy { padding: 28px 36px 36px; background: var(--bg); border-top: 1px solid var(--hero-line); }
+.intro-heading::before {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--accent-gradient);
+  margin-bottom: 24px;
+}
+.intro .eyebrow {
+  color: var(--accent);
+  font: 600 11px/1.5 var(--sans);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+}
+.intro h2 { font-size: clamp(38px, 4.2vw, 56px); line-height: 1.07; max-width: 16em; margin-bottom: 0; }
+.intro p:not(.eyebrow) { font-size: 16px; line-height: 1.7; max-width: 42em; }
+.intro h2 + p { margin-top: 0; }
+.intro p + p { margin-top: 16px; }
+.label { font-size: 12px; letter-spacing: .12em; }
+.paper { grid-template-columns: 100px minmax(0, 1fr); gap: 18px; padding: 24px 0; }
+.paper h3 { font-size: 24px; }
+.paper a:hover, .pubs li > a:hover { text-decoration: underline; }
+.venue { font-size: 12px; }
+.grid { gap: 16px; }
+.grid article {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  padding: 25px;
+  box-shadow: 0 6px 24px var(--shadow);
+}
+.grid article::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  border-radius: 8px;
+  background: var(--accent-gradient);
+  margin-bottom: 19px;
+}
+.grid h3 { font-size: 23px; margin-bottom: 10px; }
+.grid article > p:last-child { font-size: 14.5px; line-height: 1.65; }
+.meta { font-size: 11.5px; }
+.plain li { grid-template-columns: minmax(160px, .9fr) minmax(0, 2fr); padding: 15px 0; }
+.plain a, .pubs a { overflow-wrap: anywhere; }
+.pub-head { gap: 16px; }
+.filter { flex-wrap: wrap; }
+.filter button { min-height: 44px; padding: 8px 14px; background: var(--panel); }
+.filter button:hover { color: var(--text); border-color: var(--accent); }
+.pubs li { padding-top: 20px; padding-bottom: 20px; }
+.pubs li::before { top: 23px; }
+.pubs li > a { font-size: 21px; }
+.timeline { grid-template-columns: 108px minmax(0, 1fr); }
+.timeline dt, .timeline dd { padding-top: 16px; padding-bottom: 16px; }
+.timeline dt { padding-top: 18px; }
+footer { margin-top: 24px; }
+@media (min-width: 861px) and (max-width: 1100px) {
+  .shell { grid-template-columns: 248px minmax(0, 1fr); }
+  .side { padding: 36px 20px 24px; }
+  main { padding: 32px 28px; }
+  .intro-heading, .intro-copy { padding: 28px; }
+  .intro h2 { font-size: 44px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .paper { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .plain li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+@media (max-width: 860px) {
+  html { scroll-padding-top: 20px; }
+  .side { display: contents; }
+  .identity { padding: 24px 20px 12px; gap: 16px; }
+  .identity > div { min-width: 0; }
+  .identity img { width: 82px; border-radius: 14px; }
+  .side h1 { font-size: clamp(25px, 6vw, 30px); }
+  .links { padding: 0 20px 16px; }
+  .side nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    position: static;
+    gap: 4px;
+    padding: 8px 16px 16px;
+    overflow: visible;
+    background: transparent;
+    border-bottom: 1px solid var(--line);
+  }
+  .side nav a { text-align: center; font-size: 12px; padding: 10px 4px; border: 1px solid transparent; }
+  .side nav a.active { border-color: var(--active-line); }
+  main { padding: 20px 16px 28px; }
+  .intro { padding: 0; border-radius: 20px; }
+  .intro-heading, .intro-copy { padding: 25px 22px; }
+  .intro-heading::before { margin-bottom: 20px; }
+  .intro .eyebrow { font-size: 9.5px; letter-spacing: .08em; margin-bottom: 14px; }
+  .intro h2 { font-size: clamp(30px, 8vw, 38px); line-height: 1.1; margin-bottom: 0; }
+  .intro p:not(.eyebrow) { font-size: 15px; line-height: 1.65; }
+  section { margin-bottom: 44px; }
+  .paper { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+  .paper h3 { font-size: 23px; }
+  .grid article { padding: 23px; }
+  .plain li { grid-template-columns: minmax(0, 1fr); gap: 5px; }
+  .pubs li::before { position: static; }
+  .timeline { grid-template-columns: 86px minmax(0, 1fr); column-gap: 10px; }
+  .timeline dt { font-size: 12px; }
+}

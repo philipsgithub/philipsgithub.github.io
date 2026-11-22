@@ -1,0 +1,94 @@
+/* Shapes: the top-left and bottom-right corners are rounded, the other two stay square. */
+.identity img { border: 0; border-radius: 18px 0; }
+.intro { border: 0; border-radius: 26px 0; }
+.grid article { border-radius: 18px 0; }
+.filter button { border-radius: 10px 0; }
+
+@media (max-width: 860px) {
+  .identity img { border-radius: 10px 0; }
+  .intro { border-radius: 20px 0; }
+}
+
+@media (min-width: 861px) and (max-height: 660px) {
+  .identity img { border-radius: 9px 0; }
+}
+
+/* The About box is one surface. The header keeps its gradient, anchored to the header's size by
+   about-align.js, and the same gradient continues slowly to the bottom of the box. */
+.intro-heading::before { display: none; }
+.intro {
+  --about-w: 900px;
+  --about-h: 222px;
+  --about-line: calc(var(--about-w) * .766 + var(--about-h) * .6428);
+  background:
+    radial-gradient(ellipse calc(var(--about-w) * 1.4142) calc(var(--about-h) * 1.4142) at 100% 0%,
+      rgb(220 216 245 / 1) 0%, rgb(220 216 245 / 0.3077) 45.0%, rgb(220 216 245 / 0.2209) 51.2%, rgb(220 216 245 / 0.1514) 57.5%, rgb(220 216 245 / 0.0977) 63.7%, rgb(220 216 245 / 0.0577) 70.0%, rgb(220 216 245 / 0.0297) 76.2%, rgb(220 216 245 / 0.0120) 82.5%, rgb(220 216 245 / 0.0027) 88.8%, rgb(220 216 245 / 0.0000) 95.0%),
+    linear-gradient(130deg, var(--hero-start) 0, #f6f9f4 calc(var(--about-line) * .65), #e9eefb var(--about-line),
+      rgb(232.0 237.2 251.5) calc(var(--about-line) * 1.03), rgb(231.0 236.3 252.1) calc(var(--about-line) * 1.07), rgb(230.0 235.5 252.6) calc(var(--about-line) * 1.12), rgb(229.2 234.8 253.0) calc(var(--about-line) * 1.18), rgb(228.6 234.3 253.4) calc(var(--about-line) * 1.26), rgb(228.2 233.9 253.6) calc(var(--about-line) * 1.36), rgb(227.9 233.7 253.7) calc(var(--about-line) * 1.50), rgb(227.8 233.6 253.8) calc(var(--about-line) * 1.70));
+}
+.intro-heading, .intro-copy { border-top: 0; background: none; }
+
+@media (prefers-color-scheme: dark) {
+  .intro {
+    --about-line: calc((var(--about-w) + var(--about-h)) * .7071);
+    background:
+      radial-gradient(ellipse calc(var(--about-w) * 1.4142) calc(var(--about-h) * 1.4142) at 100% 0%,
+        rgb(57 52 85 / 1) 0%, rgb(57 52 85 / 0.2857) 50.0%, rgb(57 52 85 / 0.2051) 56.2%, rgb(57 52 85 / 0.1406) 62.5%, rgb(57 52 85 / 0.0907) 68.8%, rgb(57 52 85 / 0.0536) 75.0%, rgb(57 52 85 / 0.0276) 81.2%, rgb(57 52 85 / 0.0112) 87.5%, rgb(57 52 85 / 0.0025) 93.8%, rgb(57 52 85 / 0.0000) 100.0%),
+      linear-gradient(135deg, var(--hero-start) 0, #1b2c30 var(--about-line),
+        rgb(26.9 43.3 47.7) calc(var(--about-line) * 1.05), rgb(26.8 42.6 47.4) calc(var(--about-line) * 1.12), rgb(26.7 41.9 47.2) calc(var(--about-line) * 1.20), rgb(26.7 41.4 47.0) calc(var(--about-line) * 1.30), rgb(26.6 40.9 46.7) calc(var(--about-line) * 1.45), rgb(26.5 40.5 46.6) calc(var(--about-line) * 1.65), rgb(26.5 40.4 46.5) calc(var(--about-line) * 1.90), rgb(26.5 40.3 46.5) calc(var(--about-line) * 2.20));
+  }
+}
+
+/* The three focus terms: small, quiet shapes with the same diagonal corners as the box. */
+.about-terms { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0 0; padding: 0; list-style: none; }
+.about-terms li {
+  padding: 2px 9px;
+  border-radius: 7px 0;
+  background: rgba(37, 92, 101, .07);
+  color: var(--muted);
+  font: 400 12.5px/1.45 var(--sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-terms li { background: rgba(167, 222, 208, .09); }
+}
+
+@media (max-width: 860px) {
+  .about-terms { margin-top: 11px; }
+}
+
+/* The navigation rail runs through the tip of the location pin. */
+@media (min-width: 861px) {
+  .side { --pin-size: 14px; }
+  .side nav { margin-left: calc(var(--pin-size) / 2 - 1px); }
+}
+
+@media (min-width: 861px) and (max-height: 660px) {
+  .side { --pin-size: 12.5px; }
+}
+
+@media (min-width: 861px) and (max-height: 470px) {
+  .side { --pin-size: 12px; }
+}
+
+/* With the large photo, the About box starts at the photo's top and its header ends at the
+   photo's bottom. about-align.js sets the exact header height. */
+@media (min-width: 861px) and (min-height: 661px) {
+  main { padding-top: 44px; }
+  .intro-heading { display: flex; flex-direction: column; justify-content: flex-end; padding-top: 18px; }
+}
+
+@media (min-width: 861px) and (max-width: 1100px) and (min-height: 661px) {
+  main { padding-top: 36px; }
+}
+
+@media (min-width: 861px) and (min-height: 661px) and (max-height: 940px) {
+  main { padding-top: 28px; }
+}
+
+/* In shorter windows the photo shrinks, so the header text tightens to still end on its bottom edge. */
+@media (min-width: 861px) and (min-height: 661px) and (max-height: 730px) {
+  .intro-heading { padding-top: 12px; padding-bottom: 16px; }
+  .about-terms { margin-top: 7px; }
+  .intro h2 { font-size: 36px; }
+}

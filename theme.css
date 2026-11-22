@@ -1,0 +1,108 @@
+:root {
+  color-scheme: light;
+  --bg: #f6faf9;
+  --panel: #edf5f2;
+  --text: #172b31;
+  --muted: #4d6267;
+  --line: #d0dfdc;
+  --accent: #255c65;
+  --accent-soft: #e0f0eb;
+  --active-line: #accfc6;
+  --hero-line: #cddeda;
+  --hero-start: #e4f4ed;
+  --sidebar: var(--hero-start);
+  --shadow: #173d3707;
+  --hero-gradient: radial-gradient(ellipse at 100% 0%, #dcd8f5 0%, transparent 65%), linear-gradient(130deg, var(--hero-start), #f6f9f4 65%, #e9eefb);
+  --accent-gradient: linear-gradient(100deg, #39736d, #7772b5);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #142024; --panel: #1e3033; --text: #e7f3ef; --muted: #b0c8c2;
+    --line: #36504f; --accent: #a7ded0; --accent-soft: #243e3e;
+    --active-line: #496c64; --hero-line: #3c5559; --hero-start: #1d3b36; --sidebar: var(--hero-start);
+    --shadow: #00000012;
+    --hero-gradient: radial-gradient(ellipse at 100% 0%, #393455, transparent 70%), linear-gradient(135deg, var(--hero-start), #1b2c30);
+    --accent-gradient: linear-gradient(100deg, #8cc8b9, #b5acec);
+  }
+}
+
+/* A solid sage-teal sidebar separates identity and navigation from the reading area. */
+.side {
+  --line: #adc9be;
+  --muted: #3f5c57;
+  --panel: #c7ddd5;
+  --accent-soft: #b7d5cb;
+  --active-line: #7da99c;
+  border-left: 1px solid var(--line);
+}
+@media (prefers-color-scheme: dark) {
+  .side {
+    --line: #496d65;
+    --muted: #c1d6cf;
+    --panel: #2b4946;
+    --accent-soft: #345750;
+    --active-line: #6c998b;
+  }
+}
+@media (max-width: 860px) {
+  .identity, .links, .side nav { background: var(--sidebar); }
+  .side nav { border-bottom-color: var(--line); }
+}
+
+/* Own name in author lists: teal into lavender, kept on one line. */
+:root { --author-gradient: linear-gradient(95deg, #2f6f69, #675db8); --author-solid: #675db8; }
+@media (prefers-color-scheme: dark) {
+  :root { --author-gradient: linear-gradient(95deg, #93d6c6, #c8bdf8); --author-solid: #c8bdf8; }
+}
+.pubs li p b { color: var(--author-solid); font-weight: 650; white-space: nowrap; }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .pubs li p b {
+    background-image: var(--author-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  .pubs li p b { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; }
+}
+
+/* Closing acknowledgment below the publication list. */
+.pub-note { grid-column: 1 / -1; max-width: 42em; margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--text); font: 400 14.5px/1.55 var(--sans); text-wrap: balance; }
+#publications .pubs + .pub-note { width: 100%; max-width: none; }
+
+/* Open source: one ruled row per repository. */
+.oss-body { min-width: 0; }
+.oss-intro { margin-bottom: 16px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.oss-repos, .oss-items { margin: 0; padding: 0; list-style: none; }
+.oss-repos > li { display: grid; grid-template-columns: 186px minmax(0, 1fr); gap: 0 18px; padding: 14px 0; border-top: 1px solid var(--line); }
+.oss-repo { justify-self: start; min-width: 0; }
+.oss-repo code { font: 600 15px/1.5 var(--sans); }
+.oss-items > li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 12px; padding: 3px 0; }
+.oss-ref { color: var(--text); font-size: 13px; font-weight: 500; line-height: 22px; white-space: nowrap; }
+.oss-text { min-width: 0; color: var(--muted); font-size: 14.5px; line-height: 1.52; }
+.oss-text code { font-size: .96em; }
+
+@media (max-width: 860px) {
+  .oss-repos > li { display: block; }
+  .oss-repo { display: inline-block; margin-bottom: 5px; }
+}
+@media (max-width: 480px) {
+  .oss-items > li { display: block; padding: 5px 0; }
+  .oss-ref { display: block; }
+}
+
+/* Venue names sit above the title so full journal names stay on one line. */
+#research .paper { display: block; }
+#research .venue { margin-bottom: 5px; padding-top: 0; white-space: normal; }
+
+/* Projects read title, role, description. */
+#projects .grid h3 { margin-bottom: 3px; }
+#projects .grid .meta { margin-bottom: 9px; }
+
+/* Align the sidebar photo with the full width of the active section highlight. */
+@media (min-width: 861px) {
+  .identity img { width: 100%; height: auto; }
+}
