@@ -35,3 +35,10 @@
   .side nav a, .compact-bar nav a { font-size: 11.5px; }
   .role { font-size: 11.5px; }
 }
+
+/* iOS Safari colors the area around the Dynamic Island from the body background, so on narrow
+   screens the body takes the top bar color and the content keeps the page color. */
+@media (max-width: 860px) {
+  html, body { background: var(--sidebar); }
+  main { background: var(--bg); }
+}
