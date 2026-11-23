@@ -94,9 +94,17 @@
   .oss-ref { display: block; }
 }
 
-/* Venue names sit above the title so full journal names stay on one line. */
+/* Research entries read title, venue, description. */
 #research .paper { display: block; }
-#research .venue { margin-bottom: 5px; padding-top: 0; white-space: normal; }
+#research .paper h3 { margin-bottom: 3px; }
+#research .venue {
+  margin-bottom: 9px;
+  padding-top: 0;
+  color: var(--accent);
+  font-weight: 650;
+  letter-spacing: .04em;
+  white-space: normal;
+}
 
 /* Projects read title, role, description. */
 #projects .grid h3 { margin-bottom: 3px; }
