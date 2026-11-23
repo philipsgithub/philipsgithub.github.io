@@ -5,7 +5,8 @@
    The peak scales with sigma, so a curve fades into
    the rail instead of becoming the infinitely tall spike of a true density at sigma = 0.
    The same closeness moves the curve's color from the rail color to the highlight color.
-   The reading position and each sigma pass through a low-pass filter, so curves never jump. */
+   The reading position and each sigma pass through a low-pass filter, so curves never jump.
+   On narrow screens the same curves rise from the bottom line of both section rows. */
 (() => {
   const THRESHOLD = 0.5; // Distance at which sigma reaches zero, as a share of the window height.
   const MAX_SIGMA = 0.34; // Largest sigma, as a share of the spacing between labels.
@@ -14,6 +15,9 @@
   const LABEL_GAP = 6; // Space in px kept between the highest peak and the label text.
   const SMOOTHING = 0.07; // Low-pass time constant in seconds. Larger values feel slower and softer.
   const MAX_STEP = 0.05; // Longest time step in seconds, so a stalled frame cannot cause a visible jump.
+  const ROW_SIGMA = 0.26; // Largest sigma in the narrow rows, as a share of a label's width plus gap.
+  const ROW_HEIGHT = 9; // Tallest curve in the narrow rows, in px.
+  const ROW_GAP = 3; // Space in px kept between the highest peak and the label text.
 
   const nav = document.querySelector('.side nav');
   if (!nav) return;
@@ -41,6 +45,32 @@
   svg.append(group);
   nav.append(svg);
   nav.classList.add('has-density');
+
+  // The narrow page header and the fixed bar each get their own horizontal row of curves.
+  const rows = [['.side nav', '.side'], ['.compact-bar nav', '.compact-bar']].flatMap(([navSelector, boxSelector]) => {
+    const rowNav = document.querySelector(navSelector);
+    const box = document.querySelector(boxSelector);
+    if (!rowNav || !box) return [];
+    const rowLinks = links.map((link) => rowNav.querySelector(`a[href="${link.getAttribute('href')}"]`));
+    if (rowLinks.some((link) => !link)) return [];
+    const rowSvg = document.createElementNS(ns, 'svg');
+    const rowGroup = document.createElementNS(ns, 'g');
+    const rowBase = document.createElementNS(ns, 'path');
+    const rowCurves = rowLinks.map(() => {
+      const path = document.createElementNS(ns, 'path');
+      path.setAttribute('class', 'density-row-curve');
+      return path;
+    });
+    rowSvg.setAttribute('class', 'density-row');
+    rowSvg.setAttribute('aria-hidden', 'true');
+    rowSvg.setAttribute('focusable', 'false');
+    rowBase.setAttribute('class', 'density-row-base');
+    rowGroup.append(...rowCurves, rowBase);
+    rowSvg.append(rowGroup);
+    box.append(rowSvg); // The bar's corner is on the pixel grid, unlike the vertically centered row.
+    rowNav.classList.add('has-density-row');
+    return [{ nav: rowNav, box, links: rowLinks, base: rowBase, curves: rowCurves }];
+  });
 
   const position = { value: 0, velocity: 0 };
   const sigmaStates = links.map(() => ({ value: 0, velocity: 0 }));
@@ -178,8 +208,75 @@
     base.setAttribute('d', railPath);
   }
 
+  function rowCurvePath(mean, weight, sigma, line) {
+    const step = Math.max(0.25, Math.min(1, sigma / 2));
+    const samples = Math.ceil((4 * sigma) / step);
+    const points = [];
+    for (let k = -samples; k <= samples; k += 1) {
+      const x = mean + k * step;
+      if (x < line.left || x > line.right) continue;
+      const value = weight * Math.exp(-0.5 * ((x - mean) / sigma) ** 2);
+      points.push(`${px(x)} ${px(line.top - line.amplitude * value)}`);
+    }
+    if (points.length < 2) return '';
+    const firstX = points[0].split(' ')[0];
+    const lastX = points[points.length - 1].split(' ')[0];
+    return `M${firstX} ${px(line.under)}L${points.join('L')}L${lastX} ${px(line.under)}Z`;
+  }
+
+  function drawRow(row, sigmas) {
+    const scale = window.devicePixelRatio || 1;
+    const boxRect = row.box.getBoundingClientRect();
+    // The drawn line lies exactly on the bar's bottom border and is painted above the curves.
+    const border = parseFloat(getComputedStyle(row.box).borderBottomWidth) || 0;
+    const lineHeight = Math.max(1, Math.round(border * scale)) / scale;
+    const lineBottom = Math.round(boxRect.height * scale) / scale;
+    const lineTop = lineBottom - lineHeight;
+    const gap = parseFloat(getComputedStyle(row.nav).columnGap) || 0;
+
+    row.links.forEach((link, index) => {
+      const weight = sigmas[index];
+      const curve = row.curves[index];
+      if (weight <= 0) {
+        curve.setAttribute('d', '');
+        return;
+      }
+      const rect = link.getBoundingClientRect();
+      const textBottom = rect.bottom - boxRect.top - parseFloat(getComputedStyle(link).paddingBottom);
+      const line = {
+        top: lineTop,
+        under: lineTop + lineHeight / 2, // Curves close underneath the line, so no gap can open.
+        left: 0,
+        right: boxRect.width,
+        amplitude: Math.max(3, Math.min(ROW_HEIGHT, lineTop - textBottom - ROW_GAP)),
+      };
+      const mean = (rect.left + rect.right) / 2 - boxRect.left;
+      curve.setAttribute('d', rowCurvePath(mean, weight, weight * ROW_SIGMA * (rect.width + gap), line));
+      if (canMixColors) {
+        curve.style.fill = `color-mix(in oklab, var(--accent) ${(weight * 100).toFixed(1)}%, var(--active-line))`;
+      }
+    });
+    row.base.setAttribute('d', `M0 ${px(lineTop)}H${px(boxRect.width)}V${px(lineBottom)}H0Z`);
+  }
+
+  function render(sigmas) {
+    if (desktop.matches) draw(sigmas);
+    else rows.forEach((row) => drawRow(row, sigmas));
+  }
+
+  // The simple fixed bar gets a whole number of device pixels, so its bottom border stays sharp.
+  function fitFixedBar() {
+    const fixedBar = document.querySelector('.compact-bar');
+    if (!fixedBar) return;
+    fixedBar.style.removeProperty('height');
+    if (desktop.matches || document.documentElement.classList.contains('has-header-morph')) return;
+    const scale = window.devicePixelRatio || 1;
+    fixedBar.style.height = `${Math.ceil(fixedBar.getBoundingClientRect().height * scale - 0.01) / scale}px`;
+  }
+
   // Moves straight to the true state, for page load, layout changes, and reduced motion.
   function snap() {
+    fitFixedBar();
     lastTime = null;
     position.value = readingLine();
     position.velocity = 0;
@@ -188,15 +285,11 @@
       state.value = sigmas[index];
       state.velocity = 0;
     });
-    if (desktop.matches) draw(sigmas);
+    render(sigmas);
   }
 
   function update(time) {
     frame = null;
-    if (!desktop.matches) {
-      lastTime = null;
-      return;
-    }
     if (reducedMotion.matches) {
       snap();
       return;
@@ -213,7 +306,7 @@
       snap();
       return;
     }
-    draw(sigmaStates.map((state) => Math.max(0, Math.min(1, state.value))));
+    render(sigmaStates.map((state) => Math.max(0, Math.min(1, state.value))));
     frame = requestAnimationFrame(update);
   }
 
@@ -230,6 +323,10 @@
     const observer = new ResizeObserver(schedule);
     observer.observe(nav);
     observer.observe(document.body);
+    rows.forEach((row) => {
+      observer.observe(row.nav);
+      observer.observe(row.box);
+    });
   }
   document.fonts?.ready.then(snap);
   document.fonts?.addEventListener?.('loadingdone', snap); // A late web font moves the text.

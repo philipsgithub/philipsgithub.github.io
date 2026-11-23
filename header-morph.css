@@ -1,0 +1,38 @@
+/* Narrow screens: the full header stays fixed and morphs into the small top bar while scrolling.
+   header-morph.js switches this on. With reduced motion or without JavaScript, the simple bar remains. */
+@media (max-width: 860px) {
+  html.has-header-morph { scroll-padding-top: calc(var(--morph-bar, 84px) + 12px) !important; }
+  html.has-header-morph .shell { padding-top: var(--morph-full, 0px); }
+  html.has-header-morph .side {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    left: 0;
+    will-change: transform;
+  }
+  html.has-header-morph .identity img,
+  html.has-header-morph .side h1,
+  html.has-header-morph .degree,
+  html.has-header-morph .role-title,
+  html.has-header-morph .role-focus,
+  html.has-header-morph .place {
+    transform-origin: 0 0;
+    will-change: transform;
+  }
+  html.has-header-morph .role-title,
+  html.has-header-morph .role-focus { display: inline-block; }
+  /* On wider narrow screens the name shares the row, so only the labels themselves catch clicks. */
+  html.has-header-morph .side nav { pointer-events: none; }
+  html.has-header-morph .side nav a { pointer-events: auto; }
+  html.has-header-morph .compact-bar {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none;
+    transition: none !important;
+  }
+}
+
+/* The name and photo lead back to the top of the page, without looking like a text link. */
+.home-link, .home-link:hover { color: inherit; text-decoration: none; }
+[data-scroll-top] { cursor: pointer; }

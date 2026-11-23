@@ -1,0 +1,45 @@
+/* Narrow screens: the sidebar's distribution curves, laid out along the section row.
+   Without JavaScript the plain underline from the other stylesheets remains. */
+.density-row { display: none; }
+
+@media (max-width: 860px) {
+  .side { position: relative; }
+  .density-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    isolation: isolate;
+  }
+  .density-row-curve { fill: var(--accent); fill-opacity: 0.55; stroke: none; mix-blend-mode: multiply; }
+  .density-row-base { fill: var(--active-line); stroke: none; }
+
+  /* The same row height as before, with the former underline's space given to the curves. */
+  .side nav.has-density-row a,
+  .side nav.has-density-row a.active { padding-top: 12px; padding-bottom: 12px; border: 0; }
+  .compact-bar nav.has-density-row a,
+  .compact-bar nav.has-density-row a.active { padding-top: 6px; padding-bottom: 12px; border: 0; }
+}
+
+@media (max-width: 860px) and (prefers-color-scheme: dark) {
+  .density-row-curve { mix-blend-mode: screen; }
+}
+
+/* Without the slide animation the simple bar needs no GPU layer, which can blur its line at fractional scales. */
+@media (max-width: 860px) and (prefers-reduced-motion: reduce) {
+  .compact-bar.is-visible { transform: none; }
+}
+
+@media (max-width: 619px) {
+  .side nav.has-density-row a,
+  .side nav.has-density-row a.active { padding-top: 8px; padding-bottom: 12px; }
+}
+
+@media (min-width: 720px) and (max-width: 860px) {
+  .compact-bar nav.has-density-row a,
+  .compact-bar nav.has-density-row a.active { padding-top: 16px; padding-bottom: 16px; }
+}

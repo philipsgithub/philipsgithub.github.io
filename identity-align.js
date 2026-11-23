@@ -53,13 +53,16 @@
 
   function update() {
     frame = null;
-    targets.forEach((target) => {
+    const measure = () => targets.forEach((target) => {
       if (narrow.matches) fit(target);
       else {
         clear(target);
         delete target.photo.dataset.fit;
       }
     });
+    // The scroll morph moves these elements, so they are measured in their resting position.
+    if (window.headerMorph) window.headerMorph.measure(measure);
+    else measure();
   }
 
   function schedule() {
