@@ -232,5 +232,6 @@
     observer.observe(document.body);
   }
   document.fonts?.ready.then(snap);
+  document.fonts?.addEventListener?.('loadingdone', snap); // A late web font moves the text.
   snap();
 })();

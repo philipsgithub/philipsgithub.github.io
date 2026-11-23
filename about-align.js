@@ -69,5 +69,6 @@
     gradientObserver.observe(intro);
   }
   document.fonts?.ready.then(align);
+  document.fonts?.addEventListener?.('loadingdone', align); // A late web font moves the text.
   align();
 })();

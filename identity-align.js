@@ -74,5 +74,6 @@
     targets.forEach(({ text }) => observer.observe(text));
   }
   document.fonts?.ready.then(update);
+  document.fonts?.addEventListener?.('loadingdone', update); // A late web font moves the text.
   update();
 })();
