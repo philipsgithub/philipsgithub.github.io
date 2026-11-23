@@ -23,3 +23,18 @@
 .grid article { display: flex; flex-direction: column; }
 .grid article > p:not(.meta) { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
 .grid article > .entry-links { margin-top: auto; padding-top: 12px; }
+
+/* The slim tile shares the description's left edge and follows the heading's height. */
+#projects .grid article::before { content: none; }
+#projects .project-heading {
+  display: grid;
+  grid-template-columns: 6px minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 9px;
+}
+#projects .project-heading::before {
+  content: "";
+  border-radius: 3px 0;
+  background: var(--accent-gradient);
+}
+#projects .project-heading .meta { margin-bottom: 0; }
