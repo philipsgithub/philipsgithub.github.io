@@ -1,0 +1,52 @@
+/* Footer easter egg: robots standing on the page's bottom line. */
+footer.has-skyline { border-top: 0; padding-top: 0; }
+
+.robot-skyline {
+  position: relative;
+  margin-bottom: 14px;
+  padding-bottom: 1px;
+}
+
+/* The line starts at the CV table. Robots can still walk past it to the sidebar. */
+.robot-skyline::after {
+  content: "";
+  position: absolute;
+  left: var(--skyline-line-start, 0);
+  right: var(--skyline-line-end, 0);
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
+}
+
+.robot-skyline svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.skyline-robot, .skyline-forklift { fill: var(--active-line); }
+.robot-skyline-halo { flood-color: var(--bg); }
+
+.skyline-robot {
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* An invisible stroke makes the small robots easier to tap. */
+.skyline-robot path {
+  stroke: transparent;
+  stroke-width: 10px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: all;
+}
+
+.skyline-robot:focus-visible path {
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+}
+
+.skyline-forklift { pointer-events: none; }
+.skyline-robot[aria-disabled="true"] { cursor: default; }
+.skyline-robot.is-fading { opacity: 0; transition: opacity 240ms ease; }
