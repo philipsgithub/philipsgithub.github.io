@@ -1,0 +1,353 @@
+[
+  {
+    "slug": "phd-thesis-2026",
+    "title": "Visual Perception for Robotics Supporting Few-Shot Learning",
+    "authors": "P. Keller",
+    "venue": "PhD thesis, Karlsruhe Institute of Technology, 2026",
+    "kind": "PhD thesis",
+    "url": "https://doi.org/10.5445/IR/1000197460",
+    "links": [
+      {
+        "label": "DOI (open access)",
+        "href": "https://doi.org/10.5445/IR/1000197460"
+      },
+      {
+        "label": "PDF",
+        "href": "https://publikationen.bibliothek.kit.edu/1000197460/191074158"
+      }
+    ],
+    "glance": {
+      "domain": "Robot vision and few-shot learning.",
+      "application": "Robots that must handle new objects at short notice: retrieving tools, sorting batteries, collecting litter, finding hazardous items.",
+      "challenge": "Fully supervised deep learning needs large datasets, compute, preparation time and ML expertise that real robot deployments rarely have.",
+      "solution": "Build on pretrained vision backbones and adapt them from a few examples with prototypes and lightweight add-on modules. Interactive teaching lets operators steer what the model looks at.",
+      "benefit": "Practical perception systems with <strong>minimal task-specific training</strong>. Human interaction resolves ambiguity when data is scarce, which helps most with <strong>very similar categories</strong>."
+    }
+  },
+  {
+    "slug": "iros-2025-few-shot-tool-detection",
+    "title": "Interactive Fine-grained Few-shot Detection of Tools",
+    "authors": "P. Keller, L. Strecker, F. Durchdewald, F. Graaf, T. Schnell, R. Dillmann",
+    "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/IROS60139.2025.11246465",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/IROS60139.2025.11246465"
+      },
+      {
+        "label": "Project: i-SAMLR",
+        "href": "https://www.fzi.de/en/project/i-samlr/"
+      },
+      {
+        "label": "Related: Interactive teaching (ICIP 2024)",
+        "page": "icip-2024-interactive-teaching"
+      }
+    ],
+    "glance": {
+      "domain": "Few-shot object detection.",
+      "application": "Mobile robots that find and fetch specific household and industrial tools.",
+      "challenge": "Tools are rare, look very alike and are missing from large datasets. The target classes also change from mission to mission.",
+      "solution": "DE-fine-ViT extends the DE-ViT detector with class and part prototypes that the user builds interactively, plus a re-evaluation module that uses the parts to separate look-alike classes. No fine-tuning.",
+      "benefit": "A detector for look-alike tools that <strong>adapts to new classes without retraining</strong>, plus a new fine-grained power-drill dataset. Over DE-ViT, mAP@50:95 rises from <strong>0.46 to 0.70</strong> on a mini tool set and from <strong>0.25 to 0.40</strong> on the power drills. Fine-tuned detectors still score higher but must be retrained after every class change."
+    }
+  },
+  {
+    "slug": "telepresence-2025-teleoperation",
+    "title": "Towards a Versatile Teleoperation System for Mobile Robots through a Modular Architecture and Scalable Autonomy",
+    "authors": "S. Bellmann, T. Trapp, E. Hofele, D. Oberacker, M. Grosse Besselmann, N. Spielbauer, P. Keller, L. Puck, T. Schnell, R. Dillmann, A. Roennau",
+    "venue": "IEEE Conference on Telepresence, 2025",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/Telepresence66096.2025.11521742",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/Telepresence66096.2025.11521742"
+      }
+    ],
+    "glance": {
+      "domain": "Teleoperation and shared autonomy.",
+      "application": "Mobile manipulators doing maintenance tasks in factories under remote control.",
+      "challenge": "Full autonomy fails in unforeseen situations. Pure teleoperation is repetitive and requires close familiarity with the robot's interface.",
+      "solution": "A modular framework with scalable autonomy: manual control with a 3D mouse, adaptable through modes and restrictions, combined with automated subroutines.",
+      "benefit": "Shows how scalable autonomy can <strong>support the operator instead of competing</strong> with them: subroutines take over repetitive steps. Two maintenance-inspired scenarios explore how this eases operation, especially for <strong>novice users</strong>."
+    }
+  },
+  {
+    "slug": "icara-2025-trash-segmentation",
+    "title": "Low-Compute Trash Segmentation Using Pretrained Vision Transformers Without Fine-Tuning",
+    "authors": "P. Keller, M. Möck, G. Heppner, R. Dillmann",
+    "venue": "International Conference on Automation, Robotics and Applications (ICARA), 2025",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/ICARA64554.2025.10977695",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/ICARA64554.2025.10977695"
+      }
+    ],
+    "glance": {
+      "domain": "Image segmentation with vision transformers.",
+      "application": "Autonomous robots that collect litter outdoors.",
+      "challenge": "Litter is so diverse that no dataset covers every item, and trained detectors miss kinds of waste they have not seen.",
+      "solution": "Use the attention maps of a frozen, pretrained vision transformer to locate and coarsely segment trash, with an LRP-based distraction branch to look away from common non-trash objects such as small animals.",
+      "benefit": "Trash segmentation with <strong>no trash-specific training</strong> and little compute. On kinds of litter missing from the training data, it holds up better than a trained Mask R-CNN, which stays more precise on the classes it was trained on."
+    }
+  },
+  {
+    "slug": "iceccme-2024-3d-reconstruction",
+    "title": "Online Vision-Based 3D Reconstruction for Shared Human-Robot Workspaces",
+    "authors": "P. Keller, G. Perez Rivera, T. Schnell, R. Dillmann",
+    "venue": "International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2024",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/ICECCME62383.2024.10797153",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/ICECCME62383.2024.10797153"
+      }
+    ],
+    "glance": {
+      "domain": "3D reconstruction for human-robot collaboration.",
+      "application": "Collision avoidance for robot arms in workspaces shared with people.",
+      "challenge": "People can put unknown obstacles such as boxes or tools anywhere at any time. The Lidar and depth sensors usually used to detect them are expensive.",
+      "solution": "Watch the workspace with calibrated, inexpensive RGB cameras. A hybrid of learned feature matching and classical image processing reconstructs obstacles online as simplified collision objects.",
+      "benefit": "Collision checking from plain RGB cameras, so <strong>no depth sensor is needed</strong>. It also captures weakly textured objects and surfaces, and runs in <strong>near real time</strong> with three cameras."
+    }
+  },
+  {
+    "slug": "icip-2024-interactive-teaching",
+    "title": "Interactive Teaching for Fine-Granular Few-Shot Object Recognition Using Vision Transformers",
+    "authors": "P. Keller, D. Jost, A. Roennau, R. Dillmann",
+    "venue": "IEEE International Conference on Image Processing (ICIP), 2024",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/ICIP51287.2024.10647556",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/ICIP51287.2024.10647556"
+      },
+      {
+        "label": "Project: i-SAMLR",
+        "href": "https://www.fzi.de/en/project/i-samlr/"
+      },
+      {
+        "label": "Related: Tool detection (IROS 2025)",
+        "page": "iros-2025-few-shot-tool-detection"
+      }
+    ],
+    "glance": {
+      "domain": "Few-shot image classification and interpretability.",
+      "application": "Teaching robots to recognize new, very similar objects from a handful of images.",
+      "challenge": "With few examples, a model can latch onto the wrong features. Interpretability shows this, but the user cannot correct it.",
+      "solution": "Part-based inference on pretrained vision transformers, plus a visual concept bank that translates features between human and model, so users can adjust what the model focuses on.",
+      "benefit": "<strong>Closes the feedback loop</strong>: users can correct what the model focuses on, which makes fine-grained recognition more robust and adapts the model quickly <strong>without fine-tuning</strong>. Even without interaction, accuracy is on par with the state of the art."
+    }
+  },
+  {
+    "slug": "iceccme-2023-battery-sorting",
+    "title": "Robotic Sorting of Batteries Using Visual Few-shot Learning and Fusion with Depth Data",
+    "authors": "P. Keller, J. Mangler, N. Hügel, M. Grosse Besselmann, A. Roennau, R. Dillmann",
+    "venue": "International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2023",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/ICECCME57830.2023.10253347",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/ICECCME57830.2023.10253347"
+      },
+      {
+        "label": "Project: ROBDEKON",
+        "href": "https://www.fzi.de/en/project/robdekon-i-and-ii/"
+      },
+      {
+        "label": "Related: ROBDEKON report",
+        "page": "robdekon-report-2023"
+      }
+    ],
+    "glance": {
+      "domain": "Robotic recycling and sensor fusion.",
+      "application": "Automated pre-sorting of used batteries on a conveyor belt so their materials can be recovered.",
+      "challenge": "Sorting by hand exposes workers to toxic substances, and there are no large training datasets of battery types.",
+      "solution": "Few-shot visual detection on an RGB camera, checked against depth data from a line scanner using expert rules on each battery type's dimensions.",
+      "benefit": "An automated sorting line that works with <strong>few training samples</strong>. Where most other approaches rely on one sensor, fusing in depth fixed the typical mix-ups: <strong>AAA batteries 20 % → 100 %</strong> and <strong>camera batteries 0 % → 100 %</strong> correctly sorted in the test run."
+    }
+  },
+  {
+    "slug": "iros-ws-2023-llm-assistive-services",
+    "title": "Intuitive Access to Versatile Assistive Services Provided by Agile Walking Robots Using Open Source LLMs",
+    "authors": "P. Keller, B. Weng, R. Wilbrandt, F. Graaf, A. Roennau, R. Dillmann",
+    "venue": "IROS Workshop on Assistive Robotics for Citizens, 2023",
+    "kind": "Workshop paper",
+    "url": "https://drive.google.com/file/d/1JzyzgvgRz0C0sQnbJlCnEIGaX5K6ErEm/view",
+    "links": [
+      {
+        "label": "PDF",
+        "href": "https://drive.google.com/file/d/1JzyzgvgRz0C0sQnbJlCnEIGaX5K6ErEm/view"
+      }
+    ],
+    "glance": {
+      "domain": "Natural-language robot control with large language models.",
+      "application": "Assistive services at home with a walking robot that has an arm (Spot).",
+      "challenge": "Assistive services need complex software architectures, and commanding a robot still takes programming expertise.",
+      "solution": "A prompt composer combines the user's request with known places, detected objects and documented skills. A local open-source LLM picks the next behavior-tree skill, and expressive error messages feed back into the next prompt.",
+      "benefit": "A concept that lets <strong>anyone command assistive services in plain language</strong>, built from combinable generic skills. Unlike similar approaches, it grounds requests in maps and detections, learns from error feedback, and <strong>runs locally</strong> with open-source LLMs for privacy."
+    }
+  },
+  {
+    "slug": "robdekon-report-2023",
+    "title": "ROBDEKON – Teilvorhaben: Autonome, mobile Roboter für die Dekontamination in schwierigen Umgebungen",
+    "titleEn": "ROBDEKON subproject: autonomous mobile robots for decontamination in difficult environments",
+    "authors": "J. Mangler, M. Große-Besselmann, P. Keller, N. Hügel, A. Roennau",
+    "venue": "Final report (in German), FZI, 2023. Programme “Forschung für zivile Sicherheit”.",
+    "kind": "Technical report",
+    "url": "https://doi.org/10.2314/KXP:1880638576",
+    "links": [
+      {
+        "label": "DOI (open access)",
+        "href": "https://doi.org/10.2314/KXP:1880638576"
+      },
+      {
+        "label": "Project: ROBDEKON",
+        "href": "https://www.fzi.de/en/project/robdekon-i-and-ii/"
+      },
+      {
+        "label": "Video",
+        "href": "https://www.youtube.com/watch?v=ze_DPKZqLZw"
+      }
+    ],
+    "glance": {
+      "domain": "Robotics for civil security and decontamination.",
+      "application": "Robots that work in contaminated or hostile sites so that people do not have to.",
+      "challenge": "Contaminated sites endanger workers. Robots there must map unknown terrain, recognize hazards from little training data, and stay easy to operate.",
+      "solution": "FZI's part of ROBDEKON phase I: robot assistance functions developed with users, including 3D mapping, few-shot hazard detection, shared-control grasping, and a sorting cell for explosion-prone batteries.",
+      "benefit": "The final report bundles the subproject's results, from <strong>multi-robot field missions</strong> to the <strong>battery-sorting demonstrator</strong>, as a basis for the ROBDEKON II pilot scenarios."
+    }
+  },
+  {
+    "slug": "at-2022-hazardous-object-grasping",
+    "title": "Grasping and Retrieving Unknown Hazardous Objects with a Mobile Manipulator",
+    "authors": "A. Roennau, J. Mangler, P. Keller, M. Grosse Besselmann, N. Hügel, R. Dillmann",
+    "venue": "at – Automatisierungstechnik, 70(10), 2022",
+    "kind": "Journal article",
+    "url": "https://doi.org/10.1515/auto-2022-0061",
+    "links": [
+      {
+        "label": "DOI (open access)",
+        "href": "https://doi.org/10.1515/auto-2022-0061"
+      },
+      {
+        "label": "PDF",
+        "href": "https://www.degruyter.com/document/doi/10.1515/auto-2022-0061/pdf"
+      },
+      {
+        "label": "Video",
+        "href": "https://www.youtube.com/watch?v=ze_DPKZqLZw"
+      },
+      {
+        "label": "Project: ROBDEKON",
+        "href": "https://www.fzi.de/en/project/robdekon-i-and-ii/"
+      }
+    ],
+    "glance": {
+      "domain": "Mobile manipulation and shared autonomy.",
+      "application": "Finding and retrieving unknown hazardous objects, for example in decontamination missions.",
+      "challenge": "Dangerous, unknown objects have to be found and handled in difficult terrain without putting the operator at risk.",
+      "solution": "Shared operation to identify and localize the objects, 3D mapping of the site, and force-based shared-control grasping, backed by intuitive visualizations at several levels of abstraction.",
+      "benefit": "Operators can <strong>retrieve unknown hazards remotely and safely</strong>, combining the robot’s reliability with their own expertise. Evaluated successfully in a <strong>field test with two different mobile robots</strong>."
+    }
+  },
+  {
+    "slug": "wcse-2022-embedded-ai-box",
+    "title": "Embedded AI-Box for Visual Detection and Inspection with Mobile Robots in ROS2",
+    "authors": "A. Tanev, J. C. Vasquez Tieck, G. Heppner, P. Keller, A. Roennau, R. Dillmann",
+    "venue": "World Congress on Software Engineering (WCSE), Spring Event, 2022",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.18178/wcse.2022.04.054",
+    "links": [
+      {
+        "label": "DOI (open access)",
+        "href": "https://doi.org/10.18178/wcse.2022.04.054"
+      }
+    ],
+    "glance": {
+      "domain": "Embedded deep learning and ROS 2.",
+      "application": "Giving mobile robots such as Spot onboard object and person detection.",
+      "challenge": "Deep-learning vision models need computing power and energy that mobile robots and embedded systems lack.",
+      "solution": "A plug-on AI-Box with dedicated deep-learning hardware, a camera, ROS 2 and Detectron2. Models are trained offline, then pruned and quantized to run on the box.",
+      "benefit": "Mobile robots get deep-learning vision <strong>without computing hardware of their own</strong>: the box installs easily, runs compressed models onboard, and <strong>extends to classification and segmentation</strong>."
+    }
+  },
+  {
+    "slug": "case-2021-ros2-performance",
+    "title": "Performance Evaluation of Real-Time ROS2 Robotic Control in a Time-Synchronized Distributed Network",
+    "authors": "L. Puck, P. Keller, T. Schnell, C. Plasberg, A. Tanev, G. Heppner, A. Roennau, R. Dillmann",
+    "venue": "IEEE International Conference on Automation Science and Engineering (CASE), 2021",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/CASE49439.2021.9551447",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/CASE49439.2021.9551447"
+      },
+      {
+        "label": "Related: Distributed setup (CASE 2020)",
+        "page": "case-2020-ros2-distributed-setup"
+      }
+    ],
+    "glance": {
+      "domain": "Real-time robot control with ROS 2.",
+      "application": "Robot controllers assembled from open ROS 2 components instead of manufacturers' black boxes.",
+      "challenge": "ROS 1 lacks real-time communication. Whether ROS 2 on DDS really delivers reliable latency and jitter was unclear.",
+      "solution": "Measure how ROS 2 messages are allocated and sent, on one host and across time-synchronized hosts, in an application from object detection to EtherCAT control. An oscilloscope validates the measurements externally.",
+      "benefit": "<strong>Externally validated</strong> latency and jitter figures, and evidence that ROS 2 reaches real-time capability with <strong>real-time-safe memory allocation</strong> and <strong>highly privileged processes</strong>."
+    }
+  },
+  {
+    "slug": "case-2020-ros2-distributed-setup",
+    "title": "Distributed and Synchronized Setup towards Real-Time Robotic Control using ROS2 on Linux",
+    "authors": "L. Puck, P. Keller, T. Schnell, C. Plasberg, A. Tanev, G. Heppner, A. Roennau, R. Dillmann",
+    "venue": "IEEE International Conference on Automation Science and Engineering (CASE), 2020",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1109/CASE48305.2020.9217010",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1109/CASE48305.2020.9217010"
+      },
+      {
+        "label": "Related: Performance evaluation (CASE 2021)",
+        "page": "case-2021-ros2-performance"
+      }
+    ],
+    "glance": {
+      "domain": "Real-time Linux and ROS 2.",
+      "application": "Modular robot control where sensors, actuators and controllers are interchangeable.",
+      "challenge": "Industrial robots run monolithic black-box controllers whose components can be neither accessed nor exchanged.",
+      "solution": "A distributed, clock-synchronized real-time Linux setup for ROS 2, analyzed with system-inherent tools and non-invasive measurements.",
+      "benefit": "Comprehensive insights that <strong>guide ROS 2 applications</strong> on distributed, synchronized <strong>real-time Linux</strong> systems, a step from black-box controllers towards open, modular control."
+    }
+  },
+  {
+    "slug": "icann-2018-microsaccades",
+    "title": "Microsaccades for Neuromorphic Stereo Vision",
+    "authors": "J. Kaiser, J. Weinland, P. Keller, L. Steffen, J. C. Vasquez Tieck, D. Reichard, A. Roennau, J. Conradt, R. Dillmann",
+    "venue": "International Conference on Artificial Neural Networks (ICANN), 2018",
+    "kind": "Conference paper",
+    "url": "https://doi.org/10.1007/978-3-030-01418-6_24",
+    "links": [
+      {
+        "label": "DOI",
+        "href": "https://doi.org/10.1007/978-3-030-01418-6_24"
+      }
+    ],
+    "glance": {
+      "domain": "Neuromorphic vision and stereo depth perception.",
+      "application": "Depth perception for biologically inspired robots.",
+      "challenge": "Event cameras report only changes in light, so they see nothing in a static scene, and stereo matching on them fails there.",
+      "solution": "A robotic head with two Dynamic Vision Sensors makes small microsaccade-like eye movements. Precise spike timing then helps match points between the two eyes.",
+      "benefit": "Disparities from <strong>static as well as dynamic scenes</strong>, showing that event sensors and <strong>active perception</strong> complement each other."
+    }
+  }
+]
