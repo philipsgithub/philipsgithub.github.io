@@ -77,9 +77,18 @@
 .oss-body { min-width: 0; }
 .oss-intro { margin-bottom: 16px; color: var(--muted); font-size: 15px; line-height: 1.5; }
 .oss-repos, .oss-items { margin: 0; padding: 0; list-style: none; }
-.oss-repos > li { display: grid; grid-template-columns: 186px minmax(0, 1fr); gap: 0 18px; padding: 14px 0; border-top: 1px solid var(--line); }
-.oss-repo { justify-self: start; min-width: 0; }
+.oss-repos > li { display: grid; grid-template-columns: 206px minmax(0, 1fr); gap: 0 18px; padding: 14px 0; border-top: 1px solid var(--line); }
+.oss-repo { display: inline-flex; align-items: center; gap: 9px; align-self: start; justify-self: start; min-width: 0; }
 .oss-repo code { font: 600 15px/1.5 var(--sans); }
+/* Owner logos in front of the repository name, in the subtitle color like the CV logos.
+   Every logo gets the same 26px slot so the names line up; the height sets its visual size. */
+.oss-logo { flex: none; width: 26px; height: var(--logo-h); color: var(--muted); fill: currentColor; }
+.oss-logo-pi { --logo-h: 12.5px; }
+.oss-logo-rai { --logo-h: 14.4px; }
+.oss-logo-rosi { --logo-h: 13px; }
+.oss-logo-huggingface { --logo-h: 19px; }
+.oss-logo-pytorch { --logo-h: 18px; }
+.oss-logo-coco { --logo-h: 16px; }
 .oss-items > li { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 0 12px; padding: 3px 0; }
 .oss-ref { color: var(--text); font-size: 13px; font-weight: 500; line-height: 22px; white-space: nowrap; }
 .oss-text { min-width: 0; color: var(--muted); font-size: 14.5px; line-height: 1.52; }
@@ -87,7 +96,7 @@
 
 @media (max-width: 860px) {
   .oss-repos > li { display: block; }
-  .oss-repo { display: inline-block; margin-bottom: 5px; }
+  .oss-repo { margin-bottom: 5px; }
 }
 @media (max-width: 480px) {
   .oss-items > li { display: block; padding: 5px 0; }
